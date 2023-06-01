@@ -6,7 +6,15 @@ import string
 
 user_count = 20
 
-folder = './storage/users/'
+users = './storage/users/'
+pdfs = './storage/pdfs/'
+
+# create directory structure if it does'nt exist
+if not os.path.exists(users):
+    os.makedirs(users)
+
+if not os.path.exists(pdfs):
+    os.makedirs(pdfs)
 
 def randomstring():
   return ''.join(random.choice(string.ascii_letters) for i in range(8))
@@ -22,7 +30,7 @@ def create_users():
         username = randomstring()
         password = randomstring()
 
-        with open(os.path.join(folder, username + '.json'), 'w') as f:
+        with open(os.path.join(users, username + '.json'), 'w') as f:
             json.dump({
                 'username': username, 
                 'password': password, 
@@ -45,6 +53,6 @@ def create_users():
 
         print("Created user " + str(i + 1) + " of " + str(user_count))
 
-    pdf.output(os.path.join('./storage/pdfs/', 'users.pdf'))
+    pdf.output(os.path.join(pdfs, 'users.pdf'))
 
 create_users()
