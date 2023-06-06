@@ -9,7 +9,6 @@ user_count = 20
 users = './storage/users/'
 pdfs = './storage/pdfs/'
 
-# create directory structure if it does'nt exist
 if not os.path.exists(users):
     os.makedirs(users)
 
@@ -17,7 +16,7 @@ if not os.path.exists(pdfs):
     os.makedirs(pdfs)
 
 def randomstring():
-  return ''.join(random.choice(string.ascii_letters) for i in range(8))
+    return ''.join(random.choice(string.ascii_letters) for i in range(8))
 
 def create_users():
     pdf = FPDF()
