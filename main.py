@@ -1,26 +1,31 @@
+from flask_cors import CORS
 from flask import *
 import os
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def home():
   return 'Hello World!'
 
-@app.route('/login')
+
+@app.route('/login', methods=['POST'])
 def login():
-  username = request["username"]
-  password = request["password"]
-  if os.path.exists('./storage/users/' + username + '.json'):
-    with open('./storage/users/' + username + '.json', 'r') as f:
-      data = json.load(f)
-      if data["password"] == password:
-        return {"success":True}
-      else:
-        return {"success":False}
-  else:
-    return {"success":False}
+    data = request.json
+    username = data["username"]
+    password = data["password"]
+
+    if os.path.exists('./storage/users/' + username + '.json'):
+        with open('./storage/users/' + username + '.json', 'r') as f:
+            data = json.load(f)
+            if data["password"] == password:
+                return jsonify({"success": True})
+            else:
+                return jsonify({"success": False})
+    else:
+        return jsonify({"success": False})
 
 @app.route('/vote')
 def vote():
@@ -43,5 +48,6 @@ def vote():
   else:
     return {"success":False}
 
-if __name__ == '__main__':
-  app.run(host='0.0.0.0')
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
