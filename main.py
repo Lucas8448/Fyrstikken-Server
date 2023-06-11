@@ -9,9 +9,11 @@ CORS(app)
 
 tokens = {}
 
+
 @app.route('/')
 def home():
     return 'Hello World!'
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -64,6 +66,7 @@ def vote():
     else:
         return jsonify({"success": False})
 
+
 @app.route('/total_votes', methods=['GET'])
 def total_votes():
     # Initialize vote counts for categories 1-14 and contestants 1-3
@@ -112,6 +115,7 @@ def total_votes():
     response.headers["Content-Type"] = "text/html"
 
     return response
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
