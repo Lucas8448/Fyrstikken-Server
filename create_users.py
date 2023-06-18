@@ -4,7 +4,7 @@ from fpdf import FPDF
 import random
 import string
 
-user_count = 20
+user_count = 2000
 
 users = './storage/users/'
 pdfs = './storage/pdfs/'
