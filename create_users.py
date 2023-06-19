@@ -17,11 +17,11 @@ if not os.path.exists(pdfs):
 
 
 def randomstring():
-    string = ''.join(random.choice(string.ascii_letters) for i in range(8))
+    x = ''.join(random.choice(string.ascii_letters) for i in range(8))
     # replace I with i and l with L
-    string = string.replace('I', 'i')
-    string = string.replace('l', 'L')
-    return string
+    x = x.replace('I', 'i')
+    x = x.replace('l', 'L')
+    return x
 
 
 def create_users():
